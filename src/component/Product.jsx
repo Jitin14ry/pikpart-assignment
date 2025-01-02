@@ -10,8 +10,6 @@ const ProductCard = ({
   price,
   rating,
   compatibility = [],
-  onAddToCart,
-  onBulk,
 }) => {
   const [selectedCompatibility, setSelectedCompatibility] = useState("");
   const [isAddedToCart, setIsAddedToCart] = useState(false);
@@ -19,7 +17,6 @@ const ProductCard = ({
 
   const handleAddToCart = () => {
     if (!isAddedToCart) {
-      onAddToCart();
       setIsAddedToCart(true);
     }
   };
@@ -74,7 +71,7 @@ const ProductCard = ({
                 </option>
               ))}
             </select>
-            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2" >
+            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2">
               <svg className={`h-4 w-4 text-gray-500 transform transition-transform duration 200 ${isDropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
               </svg>
@@ -88,7 +85,6 @@ const ProductCard = ({
       <div className="p-4">
         <div className="flex gap-4 w-full h-7">
           <button
-            onClick={onBulk}
             className="flex-1 bg-gray-400 text-white rounded-full font-medium "
           >
             Bulk
