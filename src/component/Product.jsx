@@ -15,6 +15,7 @@ const ProductCard = ({
 }) => {
   const [selectedCompatibility, setSelectedCompatibility] = useState("");
   const [isAddedToCart, setIsAddedToCart] = useState(false);
+  const [isDropdownOpen , setIsDropdownOpen] = useState(false);
 
   const handleAddToCart = () => {
     if (!isAddedToCart) {
@@ -26,10 +27,10 @@ const ProductCard = ({
   return (
     <div className="bg-gray-100 rounded-2xl shadow-md overflow-hidden">
       <div className="w-full flex justify-end gap-2 p-2">
-        <button className="p-1.5  hover:bg-gray-100 rounded-full shadow-sm transition-colors">
+        <button className="p-1.5  rounded-full ">
           <FavoriteBorderIcon />
         </button>
-        <button className="p-1.5  hover:bg-gray-100 rounded-full shadow-sm transition-colors">
+        <button className="p-1.5 rounded-full ">
           <ShareIcon />
         </button>
       </div>
@@ -48,7 +49,7 @@ const ProductCard = ({
           </div>
         </div>
         <div className="flex justify-between">
-          <h3 className="text-lg font-medium mb-1 text-left">{title}</h3>
+          <h3 className="text-lg font-bold mb-1 text-left">{title}</h3>
           <img
             className="w-[70px] h-5"
             src="src\assets\Screenshot 2025-01-03 004516.png"
@@ -62,17 +63,19 @@ const ProductCard = ({
             <select
               value={selectedCompatibility}
               onChange={(e) => setSelectedCompatibility(e.target.value)}
+              onFocus={()=> setIsDropdownOpen(true)}
+              onBlur={()=> setIsDropdownOpen(false)}
               className="bg-gray-200 rounded-md py-1 px-2 text-sm appearance-none pr-8 focus:outline-none focus:ring-2 focus:ring-gray-300"
             >
               <option value="" disabled>Compatibility</option>
               {compatibility.map((item) => (
-                <option key={item} value={item} className="font-semibold">
+                <option key={item} value={item}>
                   {item}
                 </option>
               ))}
             </select>
-            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2">
-              <svg className="h-4 w-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2" >
+              <svg className={`h-4 w-4 text-gray-500 transform transition-transform duration 200 ${isDropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
               </svg>
             </div>
@@ -86,13 +89,13 @@ const ProductCard = ({
         <div className="flex gap-4 w-full h-7">
           <button
             onClick={onBulk}
-            className="flex-1 bg-gray-400 text-white rounded-full font-medium transition-colors"
+            className="flex-1 bg-gray-400 text-white rounded-full font-medium "
           >
             Bulk
           </button>
           <button
             onClick={handleAddToCart}
-            className={`flex-1 rounded-full font-medium transition-colors ${
+            className={`flex-1 rounded-full font-medium  ${
               isAddedToCart ? "bg-gray-400" : "bg-green-500"
             } text-white`}
           >
