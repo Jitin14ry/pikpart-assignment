@@ -54,7 +54,7 @@ const ProductCard = ({
           />
         </div>
 
-        <div className="flex items-center justify-between">
+        <div className="flex justify-between">
           <p className="text-gray-600 text-sm">{subtitle}</p>
           <div className="relative">
             <select

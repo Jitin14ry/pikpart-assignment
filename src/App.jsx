@@ -1,19 +1,9 @@
-import { useState } from 'react'
 import './App.css'
 import ProductCard from "./component/Product"
 import { productData } from './data/productData';
 
 
 const App = () => {
-
-  const handleAddToCart = (id) => {
-    console.log(`Added product ${id} to cart`);
-  };
-
-  const handleBulk = (id) => {
-    console.log(`Bulk action for product ${id}`);
-  };
-
   return (
     <div className="min-h-screen bg-white m-0 p-0">
       <div className="max-w-7xl mx-auto">
@@ -23,8 +13,6 @@ const App = () => {
             <ProductCard
               key={product.id}
               {...product}
-              onAddToCart={() => handleAddToCart(product.id)}
-              onBulk={() => handleBulk(product.id)}
             />
           ))}
         </div>
